@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace EmployeeWebService
 {
     //[Serializable] tüm üyelerin isim sırasına göre gönderir. Esnekleklik yok. Tüm üyeler gönderilir. 
-    [DataContract] // Serializable aksine bir esneklik sağlar. DataMemeber ile hangi property'lerin gönderilecği işaretlenebilir. 
+    [DataContract(Namespace = "https://yazilimalani.com/2023/03/03/Employee")] // Serializable aksine bir esneklik sağlar. DataMemeber ile hangi property'lerin gönderilecği işaretlenebilir. 
     public class Employee
     {
         private int _id;
@@ -12,28 +12,28 @@ namespace EmployeeWebService
         private string _gender;
         private DateTime _dateOfBirth;
 
-        [DataMember]
+        [DataMember(Order = 1)]
         public int Id
         {
             get { return _id; }
             set { _id = value; }
         }
 
-        [DataMember]
+        [DataMember(Order = 2)]
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
 
-        [DataMember]
+        [DataMember(Order = 3)]
         public string Gender
         {
             get { return _gender; }
             set { _gender = value; }
         }
 
-        [DataMember]
+        [DataMember(Order = 4)]
         public DateTime DateOfBirth
         {
             get { return _dateOfBirth; }
