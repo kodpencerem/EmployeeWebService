@@ -48,10 +48,10 @@
 
             <tr>
                 <td>
-                    <asp:Button ID="btnGetEmployee" runat="server" Text="Get Employee" />
+                    <asp:Button ID="btnGetEmployee" runat="server" Text="Get Employee" OnClick="btnGetEmployee_Click" />
                 </td>
                 <td>
-                    <asp:Button ID="btnSave" runat="server" Text="Save Employee" />
+                    <asp:Button ID="btnSave" runat="server" Text="Save Employee" OnClick="btnSave_Click" />
                 </td>
             </tr>
 
