@@ -5,6 +5,8 @@ namespace EmployeeWebService
 {
     //[Serializable] tüm üyelerin isim sırasına göre gönderir. Esnekleklik yok. Tüm üyeler gönderilir. 
     [DataContract(Namespace = "https://yazilimalani.com/2023/03/03/Employee")] // Serializable aksine bir esneklik sağlar. DataMemeber ile hangi property'lerin gönderilecği işaretlenebilir. 
+    [KnownType(typeof(FullTimeEmployee))]
+    [KnownType(typeof(PartTimeEmployee))]
     public class Employee
     {
         private int _id;
@@ -39,5 +41,14 @@ namespace EmployeeWebService
             get { return _dateOfBirth; }
             set { _dateOfBirth = value; }
         }
+
+        [DataMember(Order = 5)]
+        public EmployeeType Type { get; set; }
+    }
+
+    public enum EmployeeType
+    {
+        FullTimeEmployee = 1,
+        PartTimeEmployee = 2
     }
 }

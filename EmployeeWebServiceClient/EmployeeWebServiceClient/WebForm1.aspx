@@ -18,7 +18,6 @@
                 </td>
             </tr>
 
-
             <tr>
                 <td>
                     <b>Name</b>
@@ -45,6 +44,47 @@
                     <asp:TextBox ID="txtDateOfBirth" runat="server"></asp:TextBox>
                 </td>
             </tr>
+
+            <tr>
+                <td>
+                    <b>Employee Type</b>
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlEmployeeType" runat="server" OnSelectedIndexChanged="ddlEmployeeType_SelectedIndexChanged" AutoPostBack="True">
+                        <asp:ListItem Value="-1">Select Employee Type</asp:ListItem>
+                        <asp:ListItem Value="1">Full Time Employee</asp:ListItem>
+                        <asp:ListItem Value="2">Part Time Employee</asp:ListItem>
+
+                    </asp:DropDownList>
+                </td>
+            </tr>
+
+            <tr id="trAnnualSalary" runat="server" visible="false">
+                <td>
+                    <b>Annual Salary</b>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtAnnualSalary" runat="server"></asp:TextBox></td>
+            </tr>
+
+            <tr id="trHourlyPay" runat="server" visible="false">
+                <td>
+                    <b>Hourly Pay</b>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtHourlyPay" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+
+            <tr id="trHoursWorked" runat="server" visible="false">
+                <td>
+                    <b>Hours worked</b>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtHoursWorked" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+
 
             <tr>
                 <td>

@@ -8,10 +8,10 @@ namespace EmployeeWebService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "EmployeeService" in both code and config file together.
     public class EmployeeService : IEmployeeService
     {
-       
+
         public Employee GetEmployee(int id)
         {
-            Employee employee = new Employee();
+            Employee employee = null;
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -25,11 +25,33 @@ namespace EmployeeWebService
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    employee.Id = Convert.ToInt32(reader["Id"]);
-                    employee.Name = reader["Name"].ToString();
-                    employee.Gender = reader["Gender"].ToString();
-                    employee.DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]);
+                    if ((EmployeeType)reader["EmployeeType"] == EmployeeType.FullTimeEmployee)
+                    {
+                        employee = new FullTimeEmployee
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Name = reader["Name"].ToString(),
+                            Gender = reader["Gender"].ToString(),
+                            DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]),
+                            Type = EmployeeType.FullTimeEmployee,
+                            AnnualSalary = Convert.ToInt32(reader["AnnualSalary"])
+                        };
+                    }
+                    else
+                    {
+                        employee = new PartTimeEmployee
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Name = reader["Name"].ToString(),
+                            Gender = reader["Gender"].ToString(),
+                            DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]),
+                            Type = EmployeeType.PartTimeEmployee,
+                            HourlyPay = Convert.ToInt32(reader["HourlyPay"]),
+                            HoursWorked = Convert.ToInt32(reader["HoursWorked"]),
+                        };
+                    }
                 }
+
             }
             return employee;
         }
@@ -70,9 +92,42 @@ namespace EmployeeWebService
                 };
                 cmd.Parameters.Add(parameterDateOfBirth);
 
+                SqlParameter parameterEmployeeType = new SqlParameter
+                {
+                    ParameterName = "@EmployeeType",
+                    Value = Employee.Type
+                };
+                cmd.Parameters.Add(parameterEmployeeType);
+                if (Employee.GetType() == typeof(FullTimeEmployee))
+                {
+                    SqlParameter parameterAnnualSalary = new SqlParameter
+                    {
+                        ParameterName = "@AnnualSalary",
+                        Value = ((FullTimeEmployee)Employee).AnnualSalary
+                    };
+                    cmd.Parameters.Add(parameterAnnualSalary);
+                }
+                else
+                {
+                    SqlParameter parameterHourlyPay = new SqlParameter
+                    {
+                        ParameterName = "@HourlyPay",
+                        Value = ((PartTimeEmployee)Employee).HourlyPay,
+                    };
+                    cmd.Parameters.Add(parameterHourlyPay);
+
+                    SqlParameter parameterHoursWorked = new SqlParameter
+                    {
+                        ParameterName = "@HoursWorked",
+                        Value = ((PartTimeEmployee)Employee).HoursWorked
+                    };
+                    cmd.Parameters.Add(parameterHoursWorked);
+                }
+
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
+
         }
     }
 }
