@@ -5,8 +5,8 @@ namespace EmployeeWebService
 {
     //[Serializable] tüm üyelerin isim sırasına göre gönderir. Esnekleklik yok. Tüm üyeler gönderilir. 
     [DataContract(Namespace = "https://yazilimalani.com/2023/03/03/Employee")] // Serializable aksine bir esneklik sağlar. DataMemeber ile hangi property'lerin gönderilecği işaretlenebilir. 
-    [KnownType(typeof(FullTimeEmployee))]
-    [KnownType(typeof(PartTimeEmployee))]
+    //[KnownType(typeof(FullTimeEmployee))] // global
+    //[KnownType(typeof(PartTimeEmployee))]
     public class Employee
     {
         private int _id;

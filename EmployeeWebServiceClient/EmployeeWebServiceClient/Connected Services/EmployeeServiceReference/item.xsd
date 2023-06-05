@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="https://yazilimalani.com/2023/03/03/Employee" elementFormDefault="qualified" targetNamespace="https://yazilimalani.com/2023/03/03/Employee" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8086/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EmployeeWebService" />
+  <xs:import schemaLocation="http://localhost:8086/?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/EmployeeWebService" />
   <xs:complexType name="Employee">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
