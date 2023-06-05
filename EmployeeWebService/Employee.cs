@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 
 namespace EmployeeWebService
 {
@@ -44,6 +45,63 @@ namespace EmployeeWebService
 
         [DataMember(Order = 5)]
         public EmployeeType Type { get; set; }
+    }
+
+    [MessageContract(IsWrapped = true, WrapperName ="EmployeeRequestObject",WrapperNamespace = "https://yazilimalani.com/2023/03/03/Employee")]
+    public class EmployeeRequest
+    {
+        [MessageHeader(Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public string LicesenceKey { get; set; }
+
+        [MessageBodyMember(Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public int EmployeeId { get; set; }
+    }
+
+    [MessageContract(IsWrapped = true, WrapperName = "EmployeeInfoObject", WrapperNamespace = "https://yazilimalani.com/2023/03/03/Employee")]
+    public class EmployeeInfo
+    {
+        public EmployeeInfo()
+        {
+            
+        }
+
+        public EmployeeInfo(Employee employee)
+        {
+            Id = employee.Id;
+            Name = employee.Name;
+            Gender = employee.Gender;
+            DateOfBirth = employee.DateOfBirth;
+            Type = employee.Type;
+            if (Type == EmployeeType.FullTimeEmployee)
+            {
+                this.AnnualSalary = ((FullTimeEmployee) employee).AnnualSalary;
+            }
+            else
+            {
+                this.HourlyPay = ((PartTimeEmployee)employee).HourlyPay;
+                this.HoursWorked = ((PartTimeEmployee)employee).HoursWorked;
+
+            }
+            
+        }
+
+
+        [MessageBodyMember(Order=1,Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public int Id { get; set; }
+        [MessageBodyMember(Order = 2, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public string Name { get; set; }
+        [MessageBodyMember(Order = 3, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public string Gender { get; set; }
+        [MessageBodyMember(Order = 4, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public DateTime DateOfBirth { get; set; }
+        [MessageBodyMember(Order = 5, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public EmployeeType Type { get; set; }
+        [MessageBodyMember(Order = 6, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public int AnnualSalary { get; set; }
+        [MessageBodyMember(Order = 7, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public int HourlyPay { get; set; }
+        [MessageBodyMember(Order = 8, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public int HoursWorked { get; set; }
     }
 
     public enum EmployeeType
