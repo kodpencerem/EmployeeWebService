@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Dashboard.v22.2.Web.WebForms">
+      <HintPath>..\..\..\..\..\..\..\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\DevExpress.Dashboard.v22.2.Web.WebForms\v4.0_22.2.6.0__b88d1754d700e49a\DevExpress.Dashboard.v22.2.Web.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v22.2, Version=22.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -69,16 +73,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Connected Services\EmployeeServiceReference\EmployeeWebServiceClient.EmployeeServiceReference.Employee.datasource">
+    <Content Include="WebForm1.aspx" />
+    <Content Include="Connected Services\EmployeeServiceReference\EmployeeWebServiceClient.EmployeeServiceReference.EmployeeInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="WebForm1.aspx" />
+    <Content Include="Connected Services\EmployeeServiceReference\EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\EmployeeServiceReference\EmployeeWebServiceClient.EmployeeServiceReference.SaveEmployeeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\EmployeeServiceReference\item.disco" />
     <None Include="Connected Services\EmployeeServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\EmployeeServiceReference\configuration.svcinfo" />
-    <None Include="Connected Services\EmployeeServiceReference\item3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\EmployeeServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

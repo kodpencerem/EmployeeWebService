@@ -10,9 +10,9 @@ namespace EmployeeWebService
     {
         
         [OperationContract]
-        Employee GetEmployee(int id);
+        EmployeeInfo GetEmployee(EmployeeRequest request);
 
         [OperationContract]
-        void SaveEmployee(Employee Employee);
+        void SaveEmployee(EmployeeInfo Employee);
     }
 }

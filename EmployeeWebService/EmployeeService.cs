@@ -9,7 +9,8 @@ namespace EmployeeWebService
     public class EmployeeService : IEmployeeService
     {
 
-        public Employee GetEmployee(int id)
+
+        public EmployeeInfo GetEmployee(EmployeeRequest request)
         {
             Employee employee = null;
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
@@ -19,7 +20,7 @@ namespace EmployeeWebService
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlParameter parameterId = new SqlParameter();
                 parameterId.ParameterName = "@Id";
-                parameterId.Value = id;
+                parameterId.Value = request.EmployeeId;
                 cmd.Parameters.Add(parameterId);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -53,10 +54,10 @@ namespace EmployeeWebService
                 }
 
             }
-            return employee;
+            return new EmployeeInfo(employee);
         }
 
-        public void SaveEmployee(Employee Employee)
+        public void SaveEmployee(EmployeeInfo Employee)
         {
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))
@@ -98,12 +99,12 @@ namespace EmployeeWebService
                     Value = Employee.Type
                 };
                 cmd.Parameters.Add(parameterEmployeeType);
-                if (Employee.GetType() == typeof(FullTimeEmployee))
+                if (Employee.Type == EmployeeType.FullTimeEmployee)
                 {
                     SqlParameter parameterAnnualSalary = new SqlParameter
                     {
                         ParameterName = "@AnnualSalary",
-                        Value = ((FullTimeEmployee)Employee).AnnualSalary
+                        Value = Employee.AnnualSalary
                     };
                     cmd.Parameters.Add(parameterAnnualSalary);
                 }
@@ -112,14 +113,14 @@ namespace EmployeeWebService
                     SqlParameter parameterHourlyPay = new SqlParameter
                     {
                         ParameterName = "@HourlyPay",
-                        Value = ((PartTimeEmployee)Employee).HourlyPay,
+                        Value = Employee.HourlyPay,
                     };
                     cmd.Parameters.Add(parameterHourlyPay);
 
                     SqlParameter parameterHoursWorked = new SqlParameter
                     {
                         ParameterName = "@HoursWorked",
-                        Value = ((PartTimeEmployee)Employee).HoursWorked
+                        Value = Employee.HoursWorked
                     };
                     cmd.Parameters.Add(parameterHoursWorked);
                 }
