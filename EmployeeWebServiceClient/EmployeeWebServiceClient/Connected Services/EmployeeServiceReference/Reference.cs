@@ -40,6 +40,12 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/SaveEmployee", ReplyAction="http://tempuri.org/IEmployeeService/SaveEmployeeResponse")]
         System.Threading.Tasks.Task<EmployeeWebServiceClient.EmployeeServiceReference.SaveEmployeeResponse> SaveEmployeeAsync(EmployeeWebServiceClient.EmployeeServiceReference.EmployeeInfo request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeeNameById", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeeNameByIdResponse")]
+        string GetEmployeeNameById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeeNameById", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeeNameByIdResponse")]
+        System.Threading.Tasks.Task<string> GetEmployeeNameByIdAsync(int id);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -91,10 +97,13 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://yazilimalani.com/2023/03/03/Employee", Order=7)]
         public int HoursWorked;
         
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://yazilimalani.com/2023/03/03/Employee", Order=8)]
+        public string City;
+        
         public EmployeeInfo() {
         }
         
-        public EmployeeInfo(int Id, string Name, string Gender, System.DateTime DateOfBirth, EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, int AnnualSalary, int HourlyPay, int HoursWorked) {
+        public EmployeeInfo(int Id, string Name, string Gender, System.DateTime DateOfBirth, EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, int AnnualSalary, int HourlyPay, int HoursWorked, string City) {
             this.Id = Id;
             this.Name = Name;
             this.Gender = Gender;
@@ -103,6 +112,7 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
             this.AnnualSalary = AnnualSalary;
             this.HourlyPay = HourlyPay;
             this.HoursWorked = HoursWorked;
+            this.City = City;
         }
     }
     
@@ -148,7 +158,7 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
             return base.Channel.GetEmployee(request);
         }
         
-        public int GetEmployee(string LicenseKey, int EmployeeId, out string Name, out string Gender, out System.DateTime DateOfBirth, out EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, out int AnnualSalary, out int HourlyPay, out int HoursWorked) {
+        public int GetEmployee(string LicenseKey, int EmployeeId, out string Name, out string Gender, out System.DateTime DateOfBirth, out EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, out int AnnualSalary, out int HourlyPay, out int HoursWorked, out string City) {
             EmployeeWebServiceClient.EmployeeServiceReference.EmployeeRequest inValue = new EmployeeWebServiceClient.EmployeeServiceReference.EmployeeRequest();
             inValue.LicenseKey = LicenseKey;
             inValue.EmployeeId = EmployeeId;
@@ -160,6 +170,7 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
             AnnualSalary = retVal.AnnualSalary;
             HourlyPay = retVal.HourlyPay;
             HoursWorked = retVal.HoursWorked;
+            City = retVal.City;
             return retVal.Id;
         }
         
@@ -172,7 +183,7 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
             return base.Channel.SaveEmployee(request);
         }
         
-        public void SaveEmployee(int Id, string Name, string Gender, System.DateTime DateOfBirth, EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, int AnnualSalary, int HourlyPay, int HoursWorked) {
+        public void SaveEmployee(int Id, string Name, string Gender, System.DateTime DateOfBirth, EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, int AnnualSalary, int HourlyPay, int HoursWorked, string City) {
             EmployeeWebServiceClient.EmployeeServiceReference.EmployeeInfo inValue = new EmployeeWebServiceClient.EmployeeServiceReference.EmployeeInfo();
             inValue.Id = Id;
             inValue.Name = Name;
@@ -182,6 +193,7 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
             inValue.AnnualSalary = AnnualSalary;
             inValue.HourlyPay = HourlyPay;
             inValue.HoursWorked = HoursWorked;
+            inValue.City = City;
             EmployeeWebServiceClient.EmployeeServiceReference.SaveEmployeeResponse retVal = ((EmployeeWebServiceClient.EmployeeServiceReference.IEmployeeService)(this)).SaveEmployee(inValue);
         }
         
@@ -190,7 +202,7 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
             return base.Channel.SaveEmployeeAsync(request);
         }
         
-        public System.Threading.Tasks.Task<EmployeeWebServiceClient.EmployeeServiceReference.SaveEmployeeResponse> SaveEmployeeAsync(int Id, string Name, string Gender, System.DateTime DateOfBirth, EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, int AnnualSalary, int HourlyPay, int HoursWorked) {
+        public System.Threading.Tasks.Task<EmployeeWebServiceClient.EmployeeServiceReference.SaveEmployeeResponse> SaveEmployeeAsync(int Id, string Name, string Gender, System.DateTime DateOfBirth, EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, int AnnualSalary, int HourlyPay, int HoursWorked, string City) {
             EmployeeWebServiceClient.EmployeeServiceReference.EmployeeInfo inValue = new EmployeeWebServiceClient.EmployeeServiceReference.EmployeeInfo();
             inValue.Id = Id;
             inValue.Name = Name;
@@ -200,7 +212,16 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
             inValue.AnnualSalary = AnnualSalary;
             inValue.HourlyPay = HourlyPay;
             inValue.HoursWorked = HoursWorked;
+            inValue.City = City;
             return ((EmployeeWebServiceClient.EmployeeServiceReference.IEmployeeService)(this)).SaveEmployeeAsync(inValue);
+        }
+        
+        public string GetEmployeeNameById(int id) {
+            return base.Channel.GetEmployeeNameById(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetEmployeeNameByIdAsync(int id) {
+            return base.Channel.GetEmployeeNameByIdAsync(id);
         }
     }
 }

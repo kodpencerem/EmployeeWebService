@@ -1,7 +1,7 @@
-﻿using System.Data.SqlClient;
-using System.Data;
-using System;
+﻿using System;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace EmployeeWebService
 {
@@ -37,7 +37,8 @@ namespace EmployeeWebService
                             Gender = reader["Gender"].ToString(),
                             DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]),
                             Type = EmployeeType.FullTimeEmployee,
-                            AnnualSalary = Convert.ToInt32(reader["AnnualSalary"])
+                            AnnualSalary = Convert.ToInt32(reader["AnnualSalary"]),
+                            City = reader["City"].ToString()
                         };
                     }
                     else
@@ -51,12 +52,18 @@ namespace EmployeeWebService
                             Type = EmployeeType.PartTimeEmployee,
                             HourlyPay = Convert.ToInt32(reader["HourlyPay"]),
                             HoursWorked = Convert.ToInt32(reader["HoursWorked"]),
+                            City = reader["City"].ToString()
                         };
                     }
                 }
 
             }
             return new EmployeeInfo(employee);
+        }
+
+        public string GetEmployeeNameById(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public void SaveEmployee(EmployeeInfo Employee)
@@ -126,6 +133,13 @@ namespace EmployeeWebService
                     };
                     cmd.Parameters.Add(parameterHoursWorked);
                 }
+
+                SqlParameter parameterCity = new SqlParameter
+                {
+                    ParameterName = "@City",
+                    Value = Employee.City
+                };
+                cmd.Parameters.Add(parameterCity);
 
                 con.Open();
                 cmd.ExecuteNonQuery();

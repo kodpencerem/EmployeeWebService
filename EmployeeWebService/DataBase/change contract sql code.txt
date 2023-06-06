@@ -1,0 +1,42 @@
+﻿
+
+
+
+
+alter table tblEmployee 
+add City nvarchar(50);
+
+
+select * from tblEmployee
+
+
+sp_helptext upGetEmployee
+
+
+sp_helptext upSaveEmployee
+  
+alter procedure [dbo].[upGetEmployee]  
+@Id int  
+as   
+Begin  
+ Select Id, Name, Gender, DateOfBirth, EmployeeType, AnnualSalary, HourlyPay, HoursWorked, City  
+ from tblEmployee where Id = @Id  
+End  
+  
+
+  
+alter procedure [dbo].[upSaveEmployee]  
+@Id int,   
+@Name nvarchar(50),  
+@Gender nvarchar(50),  
+@DateOfBirth DateTime,  
+@EmployeeType int,  
+@AnnualSalary int = null,  
+@HourlyPay int = null,  
+@HoursWorked int = null  ,
+@City nvarchar(50) = null
+as  
+Begin  
+ Insert into tblEmployee  
+ values (@Id, @Name, @Gender, @DateOfBirth, @EmployeeType, @AnnualSalary, @HourlyPay, @HoursWorked, @City)  
+End

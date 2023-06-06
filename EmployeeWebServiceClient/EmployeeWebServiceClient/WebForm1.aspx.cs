@@ -37,6 +37,7 @@ namespace EmployeeWebServiceClient
 
             txtName.Text = employee.Name;
             txtGender.Text = employee.Gender;
+            txtCity.Text = employee.City;
             txtDateOfBirth.Text = employee.DateOfBirth.ToShortDateString();
             lblMessage.Text = "Employee retrieved";
         }
@@ -68,6 +69,7 @@ namespace EmployeeWebServiceClient
             employee.Id = Convert.ToInt32(txtID.Text);
             employee.Name = txtName.Text;
             employee.Gender = txtGender.Text;
+            txtCity.Text = employee.City;
             employee.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
             client.SaveEmployee(employee);
             lblMessage.Text = "Employee saved";

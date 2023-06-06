@@ -95,6 +95,9 @@
     <None Include="Connected Services\EmployeeServiceReference\item.disco" />
     <None Include="Connected Services\EmployeeServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\EmployeeServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\EmployeeServiceReference\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\EmployeeServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

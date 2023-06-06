@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:8086/?xsd=xsd2" namespace="https://yazilimalani.com/2023/03/03/Employee" />
       <xsd:import schemaLocation="http://localhost:8086/?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8086/?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/EmployeeWebService" />
+      <xsd:import schemaLocation="http://localhost:8086/?xsd=xsd3" namespace="http://tempuri.org/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="EmployeeRequest">
@@ -17,6 +18,12 @@
     <wsdl:part xmlns:q3="https://yazilimalani.com/2023/03/03/Employee" name="parameters" element="q3:EmployeeInfoObject" />
   </wsdl:message>
   <wsdl:message name="IEmployeeService_SaveEmployee_OutputMessage" />
+  <wsdl:message name="IEmployeeService_GetEmployeeNameById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeNameById" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetEmployeeNameById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeNameByIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEmployeeService">
     <wsdl:operation name="GetEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployee" name="EmployeeRequest" message="tns:EmployeeRequest" />
@@ -25,6 +32,10 @@
     <wsdl:operation name="SaveEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/SaveEmployee" name="EmployeeInfo" message="tns:EmployeeInfo" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/SaveEmployeeResponse" message="tns:IEmployeeService_SaveEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeNameById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeeNameById" message="tns:IEmployeeService_GetEmployeeNameById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeeNameByIdResponse" message="tns:IEmployeeService_GetEmployeeNameById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEmployeeService" type="tns:IEmployeeService">
@@ -42,6 +53,15 @@
     <wsdl:operation name="SaveEmployee">
       <soap:operation soapAction="http://tempuri.org/IEmployeeService/SaveEmployee" style="document" />
       <wsdl:input name="EmployeeInfo">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeNameById">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetEmployeeNameById" style="document" />
+      <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>

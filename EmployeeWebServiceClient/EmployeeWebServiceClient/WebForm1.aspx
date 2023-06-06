@@ -38,6 +38,15 @@
 
             <tr>
                 <td>
+                    <b>City</b>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
                     <b>Date Of Birth</b>
                 </td>
                 <td>

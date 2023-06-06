@@ -14,5 +14,8 @@ namespace EmployeeWebService
 
         [OperationContract]
         void SaveEmployee(EmployeeInfo Employee);
+
+        [OperationContract]
+        string GetEmployeeNameById(int id);
     }
 }

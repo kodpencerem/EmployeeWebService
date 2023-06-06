@@ -45,6 +45,10 @@ namespace EmployeeWebService
 
         [DataMember(Order = 5)]
         public EmployeeType Type { get; set; }
+
+        [DataMember(Order = 6)]
+        public string City { get; set; }
+
     }
 
     [MessageContract(IsWrapped = true, WrapperName = "EmployeeRequestObject", WrapperNamespace = "https://yazilimalani.com/2023/03/03/Employee")]
@@ -70,6 +74,7 @@ namespace EmployeeWebService
             Id = employee.Id;
             Name = employee.Name;
             Gender = employee.Gender;
+            City = employee.City;
             DateOfBirth = employee.DateOfBirth;
             Type = employee.Type;
             if (Type == EmployeeType.FullTimeEmployee)
@@ -82,6 +87,7 @@ namespace EmployeeWebService
                 this.HoursWorked = ((PartTimeEmployee)employee).HoursWorked;
 
             }
+            
 
         }
 
@@ -102,6 +108,9 @@ namespace EmployeeWebService
         public int HourlyPay { get; set; }
         [MessageBodyMember(Order = 8, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
         public int HoursWorked { get; set; }
+
+        [MessageBodyMember(Order = 9, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        public string City { get; set; }
     }
 
     public enum EmployeeType
