@@ -58,6 +58,12 @@ namespace EmployeeWebService
                 }
 
             }
+
+            if (_lastSavedEmployee != null && employee.Id == _lastSavedEmployee.Id)
+            {
+
+            }
+
             return new EmployeeInfo(employee);
         }
 
