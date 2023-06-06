@@ -12,6 +12,8 @@ namespace EmployeeWebService
 
         public EmployeeInfo GetEmployee(EmployeeRequest request)
         {
+            Console.WriteLine("License Key =" + request.LicenseKey);
+
             Employee employee = null;
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))

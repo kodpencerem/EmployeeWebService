@@ -11,7 +11,7 @@
     <wsdl:part xmlns:q1="https://yazilimalani.com/2023/03/03/Employee" name="parameters" element="q1:EmployeeRequestObject" />
   </wsdl:message>
   <wsdl:message name="EmployeeRequest_Headers">
-    <wsdl:part xmlns:q2="https://yazilimalani.com/2023/03/03/Employee" name="LicesenceKey" element="q2:LicesenceKey" />
+    <wsdl:part xmlns:q2="https://yazilimalani.com/2023/03/03/Employee" name="LicenseKey" element="q2:LicenseKey" />
   </wsdl:message>
   <wsdl:message name="EmployeeInfo">
     <wsdl:part xmlns:q3="https://yazilimalani.com/2023/03/03/Employee" name="parameters" element="q3:EmployeeInfoObject" />
@@ -32,7 +32,7 @@
     <wsdl:operation name="GetEmployee">
       <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetEmployee" style="document" />
       <wsdl:input name="EmployeeRequest">
-        <soap:header message="tns:EmployeeRequest_Headers" part="LicesenceKey" use="literal" />
+        <soap:header message="tns:EmployeeRequest_Headers" part="LicenseKey" use="literal" />
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="EmployeeInfo">

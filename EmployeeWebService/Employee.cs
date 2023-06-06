@@ -47,11 +47,11 @@ namespace EmployeeWebService
         public EmployeeType Type { get; set; }
     }
 
-    [MessageContract(IsWrapped = true, WrapperName ="EmployeeRequestObject",WrapperNamespace = "https://yazilimalani.com/2023/03/03/Employee")]
+    [MessageContract(IsWrapped = true, WrapperName = "EmployeeRequestObject", WrapperNamespace = "https://yazilimalani.com/2023/03/03/Employee")]
     public class EmployeeRequest
     {
         [MessageHeader(Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
-        public string LicesenceKey { get; set; }
+        public string LicenseKey { get; set; }
 
         [MessageBodyMember(Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
         public int EmployeeId { get; set; }
@@ -62,7 +62,7 @@ namespace EmployeeWebService
     {
         public EmployeeInfo()
         {
-            
+
         }
 
         public EmployeeInfo(Employee employee)
@@ -74,7 +74,7 @@ namespace EmployeeWebService
             Type = employee.Type;
             if (Type == EmployeeType.FullTimeEmployee)
             {
-                this.AnnualSalary = ((FullTimeEmployee) employee).AnnualSalary;
+                this.AnnualSalary = ((FullTimeEmployee)employee).AnnualSalary;
             }
             else
             {
@@ -82,11 +82,11 @@ namespace EmployeeWebService
                 this.HoursWorked = ((PartTimeEmployee)employee).HoursWorked;
 
             }
-            
+
         }
 
 
-        [MessageBodyMember(Order=1,Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
+        [MessageBodyMember(Order = 1, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
         public int Id { get; set; }
         [MessageBodyMember(Order = 2, Namespace = "https://yazilimalani.com/2023/03/03/Employee")]
         public string Name { get; set; }

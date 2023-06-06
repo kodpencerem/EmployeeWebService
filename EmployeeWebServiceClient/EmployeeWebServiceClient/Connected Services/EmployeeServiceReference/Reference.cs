@@ -48,7 +48,7 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
     public partial class EmployeeRequest {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="https://yazilimalani.com/2023/03/03/Employee")]
-        public string LicesenceKey;
+        public string LicenseKey;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://yazilimalani.com/2023/03/03/Employee", Order=0)]
         public int EmployeeId;
@@ -56,8 +56,8 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
         public EmployeeRequest() {
         }
         
-        public EmployeeRequest(string LicesenceKey, int EmployeeId) {
-            this.LicesenceKey = LicesenceKey;
+        public EmployeeRequest(string LicenseKey, int EmployeeId) {
+            this.LicenseKey = LicenseKey;
             this.EmployeeId = EmployeeId;
         }
     }
@@ -148,9 +148,9 @@ namespace EmployeeWebServiceClient.EmployeeServiceReference {
             return base.Channel.GetEmployee(request);
         }
         
-        public int GetEmployee(string LicesenceKey, int EmployeeId, out string Name, out string Gender, out System.DateTime DateOfBirth, out EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, out int AnnualSalary, out int HourlyPay, out int HoursWorked) {
+        public int GetEmployee(string LicenseKey, int EmployeeId, out string Name, out string Gender, out System.DateTime DateOfBirth, out EmployeeWebServiceClient.EmployeeServiceReference.EmployeeType Type, out int AnnualSalary, out int HourlyPay, out int HoursWorked) {
             EmployeeWebServiceClient.EmployeeServiceReference.EmployeeRequest inValue = new EmployeeWebServiceClient.EmployeeServiceReference.EmployeeRequest();
-            inValue.LicesenceKey = LicesenceKey;
+            inValue.LicenseKey = LicenseKey;
             inValue.EmployeeId = EmployeeId;
             EmployeeWebServiceClient.EmployeeServiceReference.EmployeeInfo retVal = ((EmployeeWebServiceClient.EmployeeServiceReference.IEmployeeService)(this)).GetEmployee(inValue);
             Name = retVal.Name;
