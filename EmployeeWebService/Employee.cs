@@ -8,8 +8,9 @@ namespace EmployeeWebService
     [DataContract(Namespace = "https://yazilimalani.com/2023/03/03/Employee")] // Serializable aksine bir esneklik sağlar. DataMemeber ile hangi property'lerin gönderilecği işaretlenebilir. 
     //[KnownType(typeof(FullTimeEmployee))] // global
     //[KnownType(typeof(PartTimeEmployee))]
-    public class Employee
+    public class Employee : IExtensibleDataObject
     {
+        private Employee _lastSavedEmployee;
         private int _id;
         private string _name;
         private string _gender;
@@ -46,9 +47,11 @@ namespace EmployeeWebService
         [DataMember(Order = 5)]
         public EmployeeType Type { get; set; }
 
-        [DataMember(Order = 6, IsRequired =true)]
+        [DataMember(Order = 6, IsRequired = true)]
         public string City { get; set; }
 
+
+        public ExtensionDataObject ExtensionData { get; set; }
     }
 
     [MessageContract(IsWrapped = true, WrapperName = "EmployeeRequestObject", WrapperNamespace = "https://yazilimalani.com/2023/03/03/Employee")]
@@ -87,7 +90,7 @@ namespace EmployeeWebService
                 this.HoursWorked = ((PartTimeEmployee)employee).HoursWorked;
 
             }
-            
+
 
         }
 

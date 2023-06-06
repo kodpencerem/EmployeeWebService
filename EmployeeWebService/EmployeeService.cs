@@ -9,7 +9,7 @@ namespace EmployeeWebService
     public class EmployeeService : IEmployeeService
     {
 
-
+        private Employee _lastSavedEmployee;
         public EmployeeInfo GetEmployee(EmployeeRequest request)
         {
             Console.WriteLine("License Key =" + request.LicenseKey);
@@ -65,9 +65,11 @@ namespace EmployeeWebService
         {
             throw new NotImplementedException();
         }
-
+        protected Employee employee1 = null;
         public void SaveEmployee(EmployeeInfo Employee)
         {
+            _lastSavedEmployee = employee1;
+
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))
             {
