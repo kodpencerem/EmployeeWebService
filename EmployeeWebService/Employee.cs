@@ -46,7 +46,7 @@ namespace EmployeeWebService
         [DataMember(Order = 5)]
         public EmployeeType Type { get; set; }
 
-        [DataMember(Order = 6)]
+        [DataMember(Order = 6, IsRequired =true)]
         public string City { get; set; }
 
     }
