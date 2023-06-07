@@ -10,7 +10,7 @@ namespace EmployeeWebService
     //[KnownType(typeof(PartTimeEmployee))]
     public class Employee : IExtensibleDataObject
     {
-        private Employee _lastSavedEmployee;
+        
         private int _id;
         private string _name;
         private string _gender;

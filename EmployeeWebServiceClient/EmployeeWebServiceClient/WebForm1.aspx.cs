@@ -69,7 +69,7 @@ namespace EmployeeWebServiceClient
             employee.Id = Convert.ToInt32(txtID.Text);
             employee.Name = txtName.Text;
             employee.Gender = txtGender.Text;
-            txtCity.Text = employee.City;
+            employee.City = txtCity.Text;
             employee.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
             client.SaveEmployee(employee);
             lblMessage.Text = "Employee saved";

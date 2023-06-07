@@ -2,10 +2,12 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.ServiceModel;
 
 namespace EmployeeWebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "EmployeeService" in both code and config file together.
+    [ServiceBehavior(InstanceContextMode =InstanceContextMode.Single)]
     public class EmployeeService : IEmployeeService
     {
 
@@ -61,7 +63,7 @@ namespace EmployeeWebService
 
             if (_lastSavedEmployee != null && employee.Id == _lastSavedEmployee.Id)
             {
-
+                employee.ExtensionData = _lastSavedEmployee.ExtensionData;
             }
 
             return new EmployeeInfo(employee);
